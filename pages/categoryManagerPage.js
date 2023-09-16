@@ -12,6 +12,12 @@ export default function CategoryManagerPage() {
   return (
     <div>
       <h1 className="py-3">Categories</h1>
+
+      <div>
+        <table style={{ fontSize: '16px' }}>
+          {categories.map((category) => <tr style={{ border: '2px solid black', textAlign: 'center' }}><td className="p-2 w-25">{category.label}</td></tr>)}
+        </table>
+      </div>
     </div>
   );
 }
