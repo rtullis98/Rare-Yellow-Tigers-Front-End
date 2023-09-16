@@ -6,7 +6,7 @@ import { useAuth } from '../utils/context/authContext';
 import RegisterForm from '../components/RegisterForm';
 import { checkUser } from '../utils/auth';
 
-function Home(updateUser) {
+function Home() {
   const { user } = useAuth();
   const [authUser, setAuthUser] = useState();
 
@@ -54,9 +54,11 @@ function Home(updateUser) {
             Sign Out
           </Button> */}
         </div>
-      ) : (<RegisterForm user={user} updateUser={updateUser} onUpdate={onUpdate} />)}
+      ) : (<RegisterForm user={user} onUpdate={onUpdate} />)}
     </>
   );
 }
 
 export default Home;
+
+// updateUser={updateUser} - was inside of the <RegisterForm /> component as a prop
