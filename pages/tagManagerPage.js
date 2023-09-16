@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllTags } from '../api/tagsData';
 import ListComponent from '../components/ListComponent';
+import LabelForm from '../components/LabelForm';
 
 export default function TagManagerPage() {
   const [tags, setTags] = useState([]);
@@ -18,7 +19,7 @@ export default function TagManagerPage() {
           <ListComponent arr={tags} />
         </div>
         <div className="w-50">
-          <h3>Create a new Tag</h3>
+          <LabelForm type="tag" />
         </div>
       </div>
 
