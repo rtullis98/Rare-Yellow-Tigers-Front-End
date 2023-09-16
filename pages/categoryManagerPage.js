@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllCategories } from '../api/categoryData';
 import ListComponent from '../components/ListComponent';
+import LabelForm from '../components/LabelForm';
 
 export default function CategoryManagerPage() {
   const [categories, setCategories] = useState([]);
@@ -19,7 +20,8 @@ export default function CategoryManagerPage() {
           <ListComponent arr={categories} />
         </div>
         <div className="w-50">
-          <h3>Create a new Category</h3>
+
+          <LabelForm />
         </div>
       </div>
     </div>
