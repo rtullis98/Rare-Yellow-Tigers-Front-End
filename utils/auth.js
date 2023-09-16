@@ -1,8 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-// import { clientCredentials } from './client';
+import { clientCredentials } from './client';
 
-const dbUrl = 'https://localhost:7129';
+const dbUrl = clientCredentials.databaseURL;
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/checkuser/${uid}`, {
