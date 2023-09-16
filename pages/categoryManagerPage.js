@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllCategories } from '../api/categoryData';
+import ListComponent from '../components/ListComponent';
 
 export default function CategoryManagerPage() {
   const [categories, setCategories] = useState([]);
@@ -13,10 +14,13 @@ export default function CategoryManagerPage() {
     <div>
       <h1 className="py-3">Categories</h1>
 
-      <div>
-        <table style={{ fontSize: '16px' }}>
-          {categories.map((category) => <tr style={{ border: '2px solid black', textAlign: 'center' }}><td className="p-2 w-25">{category.label}</td></tr>)}
-        </table>
+      <div className="d-flex gap-5">
+        <div className="w-50">
+          <ListComponent arr={categories} />
+        </div>
+        <div className="w-50">
+          <h3>Create a new Category</h3>
+        </div>
       </div>
     </div>
   );
