@@ -1,7 +1,6 @@
-// import { clientCredentials } from '../utils/client';
-// const dbUrl = clientCredentials.databaseURL;
+import { clientCredentials } from '../utils/client';
 
-const dbUrl = 'https://localhost:7129';
+const dbUrl = clientCredentials.databaseURL;
 
 // GET ALL TAGS
 const getAllTags = () => new Promise((resolve, reject) => {
