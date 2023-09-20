@@ -22,44 +22,16 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const checkUser = (uid) => new Promise((resolve, reject) => {
-//   fetch(`${clientCredentials.databaseURL}/checkuser`, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       uid,
-//     }),
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//     },
-//   })
-//     .then((resp) => resolve(resp.json()))
-//     .catch(reject);
-// });
-
-// const registerUser = (userInfo) => new Promise((resolve, reject) => {
-//   fetch(`${clientCredentials.databaseURL}/register`, {
-//     method: 'POST',
-//     body: JSON.stringify(userInfo),
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//     },
-//   })
-//     .then((resp) => resolve(resp.json()))
-//     .catch(reject);
-// });
-
-const registerUser = (userInfo) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/user`, {
+const registerUser = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/users`, {
     method: 'POST',
-    body: JSON.stringify(userInfo),
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
     },
+    body: JSON.stringify(payload),
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 

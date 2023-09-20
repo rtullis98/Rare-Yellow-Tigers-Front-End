@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { getAllTags } from '../api/tagsData';
 import ListComponent from '../components/ListComponent';
-import LabelForm from '../components/LabelForm';
+import NewLableForm from '../components/NewLabelForm';
 
 export default function TagManagerPage() {
   const [tags, setTags] = useState([]);
 
-  useEffect(() => {
+  const getTags = () => {
     getAllTags().then((data) => setTags(data));
+  };
+
+  useEffect(() => {
+    getTags();
   }, []);
 
-  console.warn('TAGS: ', tags);
+  const type = 'tag';
+
   return (
     <div>
       <h1 className="py-3">Tags</h1>
       <div className="d-flex gap-5">
         <div className="w-50">
-          <ListComponent arr={tags} />
+          <table className="w-75" style={{ fontSize: '16px' }}>
+            <tbody>
+              {tags.map((tag) => (<ListComponent key={tag.id} item={tag.label} />))}
+            </tbody>
+          </table>
         </div>
         <div className="w-50">
-          <LabelForm type="tag" />
+          <NewLableForm onUpdate={getTags} type={type} />
         </div>
       </div>
 
