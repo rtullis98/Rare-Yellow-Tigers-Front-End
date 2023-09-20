@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { getAllCategories } from '../api/categoryData';
 import ListComponent from '../components/ListComponent';
-import LabelForm from '../components/LabelForm';
+import NewLableForm from '../components/NewLabelForm';
 
 export default function CategoryManagerPage() {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
+  const getCategories = () => {
     getAllCategories().then((data) => setCategories(data));
+  };
+
+  useEffect(() => {
+    getCategories();
   }, []);
 
-  console.warn('Categories: ', categories);
+  const type = 'category';
+
   return (
     <div>
       <h1 className="py-3">Categories</h1>
 
       <div className="d-flex gap-5">
         <div className="w-50">
-          <ListComponent arr={categories} />
+          <table className="w-75" style={{ fontSize: '16px' }}>
+            <tbody>
+              {categories.map((category) => (<ListComponent key={category.id} item={category.label} />))}
+            </tbody>
+          </table>
         </div>
         <div className="w-50">
 
-          <LabelForm />
+          {/* <LabelForm type="category"/> */}
+          <NewLableForm onUpdate={getCategories} type={type} />
         </div>
       </div>
     </div>

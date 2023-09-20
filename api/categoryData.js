@@ -23,7 +23,7 @@ const getAllCategories = () => new Promise((resolve, reject) => {
 
 // Create Category
 const createCategory = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/tag`, {
+  fetch(`${dbUrl}/api/category`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
