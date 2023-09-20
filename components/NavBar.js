@@ -26,6 +26,9 @@ export default function NavBar() {
             <Link passHref href="/allPostsPage">
               <Nav.Link>All Posts</Nav.Link>
             </Link>
+            <Link passHref href="/createPostPage">
+              <Nav.Link>Add a Post</Nav.Link>
+            </Link>
             <Link passHref href="/myPostsPage">
               <Nav.Link>My Posts</Nav.Link>
             </Link>

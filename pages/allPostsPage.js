@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import getAllPosts from '../api/postsData';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
+import { getAllPosts } from '../api/postsData';
 import PostGrid from '../components/PostGrid';
 
 export default function AllPostsPage() {
@@ -13,6 +15,11 @@ export default function AllPostsPage() {
   return (
     <div>
       <h1 className="py-3">All Posts</h1>
+      <Link passHref href="/createPostPage">
+        <Button variant="primary" className="mt-3">
+          Create Post
+        </Button>
+      </Link>
       {/* Render the PostGrid component with the fetched posts */}
       <PostGrid posts={allPosts} />
     </div>
