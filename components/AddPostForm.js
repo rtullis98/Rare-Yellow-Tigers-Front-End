@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Button, Form } from 'react-bootstrap';
-import { createPost } from '../api/postsData';
+import { useRouter } from 'next/router';
+import { createPost, updatePost } from '../api/postsData';
+import { getAllCategories } from '../api/categoryData';
+import { checkUser } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  title: '',
-  imageUrl: '',
-  content: '',
-  categoryId: 0,
-  isApproved: false,
+  Title: '',
+  ImageUrl: '',
+  Content: '',
+  IsApproved: false,
 };
 
-const AddPostForm = () => {
+export default function AddPostForm({ obj }) {
   const [formData, setFormData] = useState(initialState);
+  const [rareUser, setRareUser] = useState({});
+  const [category, setCategory] = useState([]);
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    getAllCategories().then(setCategory);
+    checkUser(user.uid).then(setRareUser);
+  }, [user]);
+
+  // console.warn(rareUser);
+  // console.warn(user);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,21 +39,22 @@ const AddPostForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...formData };
-    console.log(payload);
-    createPost(payload)
-      .then((response) => {
-        if (response.ok) {
-          console.log('New Post Created:', response.data);
-        } else {
-          response.json().then((errorData) => {
-            console.error('Error:', errorData.error);
-          });
-        }
-      })
-      .catch((error) => {
-        console.error('Error creating post:', error);
-      });
+    if (formData.Id) {
+      updatePost(formData)
+        .then(() => router.push('/'));
+    } else {
+      const payload = { ...formData, RareUserId: rareUser[0].Id };
+      console.warn(payload);
+      createPost(payload)
+        .then((response) => {
+          console.log('API Response:', response);
+          router.push('/');
+        })
+        .catch((error) => {
+          console.error('API Error:', error);
+        });
+    }
+    console.warn(category);
   };
 
   return (
@@ -50,8 +66,8 @@ const AddPostForm = () => {
           <Form.Control
             type="text"
             placeholder="Enter an image url"
-            name="imageUrl"
-            value={formData.imageUrl}
+            name="ImageUrl"
+            value={formData.ImageUrl}
             onChange={handleChange}
             required
           />
@@ -61,8 +77,8 @@ const AddPostForm = () => {
           <Form.Control
             type="text"
             placeholder="Enter Post Title"
-            name="title"
-            value={formData.title}
+            name="Title"
+            value={formData.Title}
             onChange={handleChange}
             required
           />
@@ -72,46 +88,53 @@ const AddPostForm = () => {
           <Form.Control
             type="text"
             placeholder="Enter the content"
-            name="content"
-            value={formData.content}
+            name="Content"
+            value={formData.Content}
             onChange={handleChange}
             required
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Select the category of the post" className="mb-3">
+        <Form.Group className="mb-3" controlId="formGridLevel">
           <Form.Select
-            name="categoryId"
-            value={formData.categoryId}
+            aria-label="Category"
+            name="CategoryId"
             onChange={handleChange}
-            required
+            className="mb-3"
+            value={obj.CategoryId}
           >
-            <option value="0">Select a category</option>
-            <option value="1">Music</option>
-            <option value="2">Movie</option>
-            {/* Add more options as needed */}
+            <option value="">Select a Category</option>
+            {
+            category.map((Categories) => (
+              <option
+                key={Categories.id}
+                value={Categories.id}
+              >
+                {Categories.label}
+              </option>
+            ))
+          }
           </Form.Select>
-        </FloatingLabel>
+        </Form.Group>
 
         {/* SUBMIT BUTTON  */}
         <Button type="submit">Create Post</Button>
       </Form>
     </>
   );
-};
+}
 
 AddPostForm.propTypes = {
   obj: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    categoryId: PropTypes.number,
-    imageUrl: PropTypes.string,
-    content: PropTypes.string,
-    isApproved: PropTypes.bool,
+    Id: PropTypes.number,
+    Title: PropTypes.string,
+    CategoryId: PropTypes.number,
+    ImageUrl: PropTypes.string,
+    Content: PropTypes.string,
+    IsApproved: PropTypes.bool,
+    RareUserId: PropTypes.number,
   }),
 };
 AddPostForm.defaultProps = {
   obj: initialState,
 };
-
-export default AddPostForm;

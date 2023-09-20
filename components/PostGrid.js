@@ -20,9 +20,10 @@ const PostGrid = ({ posts }) => (
 );
 
 const postShape = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  UserName: PropTypes.string.isRequired,
+  Id: PropTypes.number,
+  Title: PropTypes.string,
+  UserName: PropTypes.string,
+  Tags: PropTypes.string,
 });
 
 PostGrid.propTypes = {
