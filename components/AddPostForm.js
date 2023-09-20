@@ -8,6 +8,7 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
+  Id: 0,
   Title: '',
   ImageUrl: '',
   Content: '',
@@ -16,18 +17,15 @@ const initialState = {
 
 export default function AddPostForm({ obj }) {
   const [formData, setFormData] = useState(initialState);
-  const [rareUser, setRareUser] = useState({});
+  const [, setRareUser] = useState({});
   const [category, setCategory] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     getAllCategories().then(setCategory);
-    checkUser(user.uid).then(setRareUser);
+    checkUser(user.id).then(setRareUser);
   }, [user]);
-
-  // console.warn(rareUser);
-  // console.warn(user);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +41,7 @@ export default function AddPostForm({ obj }) {
       updatePost(formData)
         .then(() => router.push('/'));
     } else {
-      const payload = { ...formData, RareUserId: rareUser[0].Id };
+      const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
       console.warn(payload);
       createPost(payload)
         .then((response) => {

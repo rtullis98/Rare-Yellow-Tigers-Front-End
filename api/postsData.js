@@ -40,7 +40,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
 });
 
 const updatePost = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/post/${payload.id}`, {
+  fetch(`${dbUrl}/api/post/${payload.Id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
