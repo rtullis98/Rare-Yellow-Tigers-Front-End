@@ -38,6 +38,9 @@ export default function NavBar() {
             <Link passHref href="/tagManagerPage">
               <Nav.Link>Tag Manager</Nav.Link>
             </Link>
+            <Link passHref href="/userProfile">
+              <Nav.Link>User Profile</Nav.Link>
+            </Link>
             <Button className="me-5" variant="dark fw-bold ps-3" onClick={signOut}>
               Sign Out
             </Button>
