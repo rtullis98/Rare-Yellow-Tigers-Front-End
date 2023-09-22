@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 
 const PostGrid = ({ posts }) => (
   <div className="row">
@@ -14,6 +16,12 @@ const PostGrid = ({ posts }) => (
             <p className="card-text">Category: {post.category}</p>
             <p className="card-text">Tag: {post.tags}</p>
             <p className="card-text">Created on: {post.publicationDate}</p>
+
+            <Link passHref href={`/post/${post.id}`}>
+              <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
+                View
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
