@@ -14,12 +14,15 @@ export default function AllPostsPage() {
   console.warn('All Posts: ', allPosts);
   return (
     <div>
-      <h1 className="py-3">All Posts</h1>
-      <Link passHref href="/createPostPage">
-        <Button variant="primary" className="mt-3">
-          Create Post
-        </Button>
-      </Link>
+      <div className="d-flex justify-content-between">
+        <h1 className="py-3">All Posts</h1>
+        <Link passHref href="/createPostPage">
+          <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
+            Create Post
+          </Button>
+        </Link>
+      </div>
+
       {/* Render the PostGrid component with the fetched posts */}
       <PostGrid posts={allPosts} />
     </div>
