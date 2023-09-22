@@ -42,17 +42,12 @@ export default function AddPostForm({ obj }) {
         .then(() => router.push('/'));
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
-      console.warn(payload);
       createPost(payload)
-        .then((response) => {
-          console.log('API Response:', response);
-          router.push('/');
-        })
+        .then(router.push('/'))
         .catch((error) => {
           console.error('API Error:', error);
         });
     }
-    console.warn(category);
   };
 
   return (
