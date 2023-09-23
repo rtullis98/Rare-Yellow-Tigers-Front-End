@@ -22,7 +22,7 @@ const ViewPost = ({ posts }) => (
 
             <Link passHref href={`/post/${post.id}`}>
               <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
-                View
+                Comment
               </Button>
             </Link>
           </div>
