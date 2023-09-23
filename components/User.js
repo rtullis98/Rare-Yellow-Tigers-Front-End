@@ -4,8 +4,6 @@ import { ListGroup } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 export default function User({ user }) {
-  console.warn('Image: ', user.profileImageUrl);
-
   let photo = '';
   if (user.profileImageUrl === null) {
     photo = user.fbUser.photoURL;
