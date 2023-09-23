@@ -23,6 +23,7 @@ export default function SinglePostPage() {
 
   return (
     <div>
+      <h2>View a Post</h2>
       {Object.keys(post).length > 0 && (
       <PostGrid posts={post} />
       )}
