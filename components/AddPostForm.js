@@ -8,13 +8,11 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  Id: 0,
   Title: '',
   ImageUrl: '',
   Content: '',
   IsApproved: false,
 };
-
 export default function AddPostForm({ obj }) {
   const [formData, setFormData] = useState(initialState);
   const [, setRareUser] = useState({});
@@ -22,10 +20,12 @@ export default function AddPostForm({ obj }) {
   const { user } = useAuth();
   const router = useRouter();
 
+  console.warn('OBJECT: ', obj);
   useEffect(() => {
     getAllCategories().then(setCategory);
     checkUser(user.id).then(setRareUser);
-  }, [user]);
+    if (obj.id) setFormData(obj);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +37,9 @@ export default function AddPostForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.Id) {
-      updatePost(formData)
+    if (obj.id) {
+      const updatedPost = { ...formData, Id: obj.id };
+      updatePost(updatedPost)
         .then(() => router.push('/'));
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
@@ -49,6 +50,8 @@ export default function AddPostForm({ obj }) {
         });
     }
   };
+
+  // console.warn('FORM DATA: ', formData);
 
   return (
     <>
@@ -119,7 +122,7 @@ export default function AddPostForm({ obj }) {
 
 AddPostForm.propTypes = {
   obj: PropTypes.shape({
-    Id: PropTypes.number,
+    id: PropTypes.number,
     Title: PropTypes.string,
     CategoryId: PropTypes.number,
     ImageUrl: PropTypes.string,

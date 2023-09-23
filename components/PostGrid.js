@@ -30,6 +30,11 @@ const PostGrid = ({ posts, isAuthenticated, onUpdate }) => {
                   View
                 </Button>
               </Link>
+              <Link passHref href={`/edit/${post.id}`}>
+                <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
+                  Edit
+                </Button>
+              </Link>
               {isAuthenticated && (
                 // <Link passHref href={`/post/${post.id}`}>
                 <Button variant="secondary" className="mt-3 btn-sm ms-3" style={{ height: '32px' }} onClick={() => deleteMyPost(post.id)}>

@@ -113,6 +113,24 @@ const getPostsByUser = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const singlePostByUser = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/singlepostsbyuser/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then(async (res) => {
+      let data;
+      if (res.ok) {
+        data = await res.json();
+        resolve(data);
+      }
+    })
+    .catch(reject);
+});
+
 const addTagToPost = (postId, tagId) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/post/tagpost`, {
     method: 'POST',
@@ -142,4 +160,5 @@ export {
   addTagToPost,
   getSinglePost,
   deletePost,
+  singlePostByUser,
 };
