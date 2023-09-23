@@ -38,6 +38,24 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// Delete Post https://localhost:7129/api/post/32
+const deletePost = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/post/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then(async (res) => {
+      if (res.NotFound) {
+        resolve();
+      }
+    })
+    .catch(reject);
+});
+
+// Create new post
 const createPost = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/post`, {
     method: 'POST',
@@ -57,6 +75,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// UPdate post
 const updatePost = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/post/${payload.Id}`, {
     method: 'PUT',
@@ -122,4 +141,5 @@ export {
   getPostsByUser,
   addTagToPost,
   getSinglePost,
+  deletePost,
 };

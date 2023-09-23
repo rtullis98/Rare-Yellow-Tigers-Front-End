@@ -39,11 +39,11 @@ export default function AddPostForm({ obj }) {
     e.preventDefault();
     if (formData.Id) {
       updatePost(formData)
-        .then(() => router.push('/allPostsPage'));
+        .then(() => router.push('/'));
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
       createPost(payload)
-        .then(router.push('/allPostsPage'))
+        .then(router.push('/myPostsPage'))
         .catch((error) => {
           console.error('API Error:', error);
         });
