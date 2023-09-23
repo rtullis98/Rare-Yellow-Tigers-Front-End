@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getSinglePost } from '../../api/postsData';
-import PostGrid from '../../components/PostGrid';
+import ViewPost from '../../components/ViewPost';
 
 export default function SinglePostPage() {
   const router = useRouter();
@@ -22,9 +22,10 @@ export default function SinglePostPage() {
   }
 
   return (
-    <div className="pt-5">
+    <div>
+      <h2>View a Post</h2>
       {Object.keys(post).length > 0 && (
-      <PostGrid posts={post} />
+      <ViewPost posts={post} />
       )}
     </div>
   );

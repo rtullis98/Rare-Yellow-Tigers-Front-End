@@ -48,6 +48,7 @@ const postShape = PropTypes.shape({
   UserName: PropTypes.string,
   Tags: PropTypes.string,
   imageUrl: PropTypes.string,
+  Content: PropTypes.string,
 });
 
 PostGrid.propTypes = {
