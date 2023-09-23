@@ -24,9 +24,9 @@ function NewLableForm({ onUpdate, type }) {
     e.preventDefault();
     const payload = { ...formData };
 
-    if (type === 'category') {
+    if (type.toLowerCase() === 'category') {
       createCategory(payload).then(() => onUpdate());
-    } else if (type === 'tag') {
+    } else if (type.toLowerCase() === 'tag') {
       createTag(payload).then(() => onUpdate());
     }
     e.target.reset();
@@ -35,7 +35,8 @@ function NewLableForm({ onUpdate, type }) {
   return (
     <>
       <div style={{ border: '1px solid black', borderRadius: '10px', padding: '20px' }}>
-        <h4>Create a new { type === 'tag' ? <span>Tag</span> : <span>Category</span>}</h4>
+        {/* <h4>Create a new { type === 'tag' ? <span>Tag</span> : <span>Category</span>}</h4> */}
+        <h4>Create a new {type}</h4>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control type="text" name="label" required onChange={handleChange} />

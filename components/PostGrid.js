@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 
-const PostGrid = ({ posts }) => (
+const PostGrid = ({ posts, isAuthenticated, deletePost }) => (
   <div className="row">
     {posts.map((post) => (
       <div key={post.id} className="col-md-4 mb-4">
@@ -22,6 +22,13 @@ const PostGrid = ({ posts }) => (
                 View
               </Button>
             </Link>
+            {isAuthenticated && (
+              <Link passHref href={`/post/${post.id}`}>
+                <Button variant="secondary" className="mt-3 btn-sm ms-3" style={{ height: '32px' }} onClick={() => deletePost(post.Id)}>
+                  Delete
+                </Button>
+              </Link>
+            ) }
           </div>
         </div>
       </div>
@@ -39,6 +46,13 @@ const postShape = PropTypes.shape({
 
 PostGrid.propTypes = {
   posts: PropTypes.arrayOf(postShape).isRequired,
+  isAuthenticated: PropTypes.bool,
+  deletePost: PropTypes.func,
+};
+
+PostGrid.defaultProps = {
+  isAuthenticated: false,
+  deletePost: () => {},
 };
 
 export default PostGrid;

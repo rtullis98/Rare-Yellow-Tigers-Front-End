@@ -22,7 +22,7 @@ export default function SinglePostPage() {
   }
 
   return (
-    <div>
+    <div className="pt-5">
       {Object.keys(post).length > 0 && (
       <PostGrid posts={post} />
       )}

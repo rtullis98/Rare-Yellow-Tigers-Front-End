@@ -14,13 +14,13 @@ export default function CategoryManagerPage() {
     getCategories();
   }, []);
 
-  const type = 'category';
+  const type = 'Category';
 
   return (
     <div>
       <h1 className="py-3">Categories</h1>
 
-      <div className="d-flex gap-5">
+      <div className="d-flex gap-5 pt-3">
         <div className="w-50">
           <table className="w-75" style={{ fontSize: '16px' }}>
             <tbody>
