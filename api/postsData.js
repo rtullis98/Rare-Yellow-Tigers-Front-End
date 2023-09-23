@@ -48,7 +48,7 @@ const deletePost = (id) => new Promise((resolve, reject) => {
     },
   })
     .then(async (res) => {
-      if (res.NotFound) {
+      if (res.ok) {
         resolve();
       }
     })
