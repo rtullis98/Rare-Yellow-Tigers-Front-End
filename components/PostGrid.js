@@ -13,9 +13,12 @@ const PostGrid = ({ posts }) => (
             {post.imageUrl && <img src={post.imageUrl} alt="post" />}
             <h5 className="card-title">Post Title: {post.title}</h5>
             <p className="card-text">Name: {post.userName}</p>
+            <p className="card-text">Content: {post.content}</p>
             <p className="card-text">Category: {post.category}</p>
             <p className="card-text">Tag: {post.tags}</p>
             <p className="card-text">Created on: {post.publicationDate}</p>
+            <p className="card-text">Comments: {post.comments[0]?.content}</p>
+            <p className="card-text">Reactions: {post.reactions[0]?.image_Url}</p>
 
             <Link passHref href={`/post/${post.id}`}>
               <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
@@ -35,6 +38,7 @@ const postShape = PropTypes.shape({
   UserName: PropTypes.string,
   Tags: PropTypes.string,
   imageUrl: PropTypes.string,
+  Content: PropTypes.string,
 });
 
 PostGrid.propTypes = {
