@@ -37,19 +37,21 @@ function AddCommentForm({ postId }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="content">
-        <Form.Control
-          type="text"
-          placeholder="Enter your comment"
-          name="content"
-          value={comment.content}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Button type="submit">Add Comment</Button>
-    </Form>
+    <div style={{ border: '1px solid black', borderRadius: '10px', padding: '20px' }}>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="content">
+          <Form.Control
+            type="text"
+            placeholder="Enter your comment"
+            name="content"
+            value={comment.content}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Button className="mt-2" type="submit">Add Comment</Button>
+      </Form>
+    </div>
   );
 }
 

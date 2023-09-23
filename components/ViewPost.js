@@ -17,7 +17,6 @@ const ViewPost = ({ posts }) => (
             <p className="card-text">Category: {post.category}</p>
             <p className="card-text">Tag: {post.tags}</p>
             <p className="card-text">Created on: {post.publicationDate}</p>
-            <p className="card-text">Comments: {post.comments[0]?.content}</p>
             <p className="card-text">Reactions: {post.reactions[0]?.image_Url}</p>
           </div>
         </div>
