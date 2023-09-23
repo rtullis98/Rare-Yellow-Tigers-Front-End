@@ -39,19 +39,31 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
 });
 
 // Delete Post https://localhost:7129/api/post/32
+// const deletePost = (id) => new Promise((resolve, reject) => {
+//   fetch(`${dbUrl}/api/post/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//     },
+//   })
+//     .then(async (res) => {
+//       console.warn('RESULT: ', res);
+//       if (res.NotFound) {
+//         resolve();
+//       }
+//     })
+//     .catch(reject);
+// });
+
 const deletePost = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/post/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
     },
   })
-    .then(async (res) => {
-      if (res.ok) {
-        resolve();
-      }
-    })
+    .then((data) => resolve(data))
     .catch(reject);
 });
 

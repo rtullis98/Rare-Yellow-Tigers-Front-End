@@ -7,7 +7,9 @@ import { deletePost } from '../api/postsData';
 
 const PostGrid = ({ posts, isAuthenticated, onUpdate }) => {
   const deleteMyPost = (id) => {
-    deletePost(id).then(onUpdate());
+    if (window.confirm('Delete This Post?')) {
+      deletePost(id).then(() => onUpdate());
+    }
   };
 
   return (
@@ -29,11 +31,11 @@ const PostGrid = ({ posts, isAuthenticated, onUpdate }) => {
                 </Button>
               </Link>
               {isAuthenticated && (
-                <Link passHref href={`/post/${post.id}`}>
-                  <Button variant="secondary" className="mt-3 btn-sm ms-3" style={{ height: '32px' }} onClick={() => deleteMyPost(post.id)}>
-                    Delete
-                  </Button>
-                </Link>
+                // <Link passHref href={`/post/${post.id}`}>
+                <Button variant="secondary" className="mt-3 btn-sm ms-3" style={{ height: '32px' }} onClick={() => deleteMyPost(post.id)}>
+                  Delete
+                </Button>
+                // </Link>
               ) }
             </div>
           </div>
