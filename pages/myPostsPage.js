@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
-import { getPostsByUser, deletePost } from '../api/postsData';
+import { getPostsByUser } from '../api/postsData';
 import PostGrid from '../components/PostGrid';
 
 export default function MyPostsPage() {
@@ -15,12 +15,6 @@ export default function MyPostsPage() {
     getMyPosts();
   }, []);
 
-  const deleteMyPost = (id) => {
-    deletePost(id).then(getMyPosts());
-  };
-
-  console.warn('User: ', user);
-
   if (user.uid != null) {
     isAuthenticated = true;
   }
@@ -28,7 +22,7 @@ export default function MyPostsPage() {
   return (
     <div>
       <h1 className="py-3">My Posts</h1>
-      <PostGrid posts={myPosts} isAuthenticated={isAuthenticated} deletePost={deleteMyPost} />
+      <PostGrid posts={myPosts} isAuthenticated={isAuthenticated} onUpdate={getMyPosts} />
     </div>
   );
 }

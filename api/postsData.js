@@ -40,6 +40,7 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
 
 // Delete Post https://localhost:7129/api/post/32
 const deletePost = (id) => new Promise((resolve, reject) => {
+  console.warn('ID: ', id);
   fetch(`${dbUrl}/api/post/${id}`, {
     method: 'DELETE',
     headers: {
@@ -48,10 +49,10 @@ const deletePost = (id) => new Promise((resolve, reject) => {
     },
   })
     .then(async (res) => {
-      let data;
+      // let data;
       if (res.ok) {
-        data = await res.json();
-        resolve(data);
+        // data = await res.json();
+        resolve();
       }
     })
     .catch(reject);

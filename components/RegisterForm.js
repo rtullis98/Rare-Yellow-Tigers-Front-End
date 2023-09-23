@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -109,14 +109,14 @@ function RegisterForm() {
   );
 }
 
-RegisterForm.propTypes = {
-  user: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    bio: PropTypes.string.isRequired,
-    profileImageUrl: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// RegisterForm.propTypes = {
+//   user: PropTypes.shape({
+//     firstName: PropTypes.string.isRequired,
+//     lastName: PropTypes.string.isRequired,
+//     email: PropTypes.string.isRequired,
+//     bio: PropTypes.string.isRequired,
+//     profileImageUrl: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 
 export default RegisterForm;
