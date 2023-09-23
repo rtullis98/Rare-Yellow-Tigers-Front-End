@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+// import Link from 'next/link';
+// import { Button } from 'react-bootstrap';
 
 const ViewPost = ({ posts }) => (
   <div className="row">
@@ -19,12 +19,6 @@ const ViewPost = ({ posts }) => (
             <p className="card-text">Created on: {post.publicationDate}</p>
             <p className="card-text">Comments: {post.comments[0]?.content}</p>
             <p className="card-text">Reactions: {post.reactions[0]?.image_Url}</p>
-
-            <Link passHref href={`/post/${post.id}`}>
-              <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
-                Comment
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
