@@ -43,7 +43,7 @@ export default function AddPostForm({ obj }) {
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
       createPost(payload)
-        .then(router.push('/'))
+        .then(router.push('/myPostsPage'))
         .catch((error) => {
           console.error('API Error:', error);
         });
