@@ -25,9 +25,7 @@ function AddTagToPost({ postId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedTag) {
-      console.warn('SELECTED TAG', selectedTag);
       const newPostId = postId[0]?.id;
-      console.warn('POST ID: ', newPostId);
       addTagToPost(newPostId, selectedTag)
         .then((data) => {
           console.warn('Tag added to post:', data);
