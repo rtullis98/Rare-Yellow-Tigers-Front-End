@@ -11,7 +11,6 @@ export default function AllPostsPage() {
     getAllPosts().then((data) => setAllPosts(data));
   }, []);
 
-  console.warn('All Posts: ', allPosts);
   return (
     <div>
       <div className="d-flex justify-content-between">

@@ -8,7 +8,6 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  Id: 0,
   Title: '',
   ImageUrl: '',
   Content: '',
