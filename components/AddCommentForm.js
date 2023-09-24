@@ -12,7 +12,6 @@ const initialState = {
 
 function AddCommentForm({ postId }) {
   const [comment, setComment] = useState(initialState);
-
   const [, setRareUser] = useState({});
   const { user } = useAuth();
 

@@ -114,19 +114,21 @@ const getPostsByUser = (id) => new Promise((resolve, reject) => {
 });
 
 const addTagToPost = (postId, tagId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/post/tagpost`, {
+  fetch(`${dbUrl}/api/post/tagpost/${postId}/${tagId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ postId, tagId }),
+    body: JSON.stringify({ postId, tagId }), // Send PostId and TagId in the request body
   })
     .then(async (res) => {
       if (res.ok) {
-        const data = await res.json();
+        const data = await res.json(); // Parse the response as JSON
         resolve(data);
+        console.warn('POSTID', postId, 'TAGID', tagId, 'DATA: ', data);
       } else {
         reject(new Error(`Failed to add tag to post. Status: ${res.status}`));
+        console.warn('POSTID', postId, 'TAGID', tagId, 'STATUS: ', res.status);
       }
     })
     .catch((error) => {
