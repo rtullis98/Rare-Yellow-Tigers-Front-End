@@ -119,16 +119,14 @@ const addTagToPost = (postId, tagId) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ postId, tagId }), // Send PostId and TagId in the request body
+    body: JSON.stringify({ postId, tagId }),
   })
     .then(async (res) => {
       if (res.ok) {
-        const data = await res.json(); // Parse the response as JSON
+        const data = await res.json();
         resolve(data);
-        console.warn('POSTID', postId, 'TAGID', tagId, 'DATA: ', data);
       } else {
         reject(new Error(`Failed to add tag to post. Status: ${res.status}`));
-        console.warn('POSTID', postId, 'TAGID', tagId, 'STATUS: ', res.status);
       }
     })
     .catch((error) => {
