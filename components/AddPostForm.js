@@ -8,10 +8,10 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  Title: '',
-  ImageUrl: '',
-  Content: '',
-  IsApproved: false,
+  title: '',
+  imageUrl: '',
+  content: '',
+  isApproved: false,
 };
 export default function AddPostForm({ obj }) {
   const [formData, setFormData] = useState(initialState);
@@ -63,7 +63,7 @@ export default function AddPostForm({ obj }) {
             type="text"
             placeholder="Enter an image url"
             name="ImageUrl"
-            value={formData.ImageUrl}
+            value={formData.imageUrl}
             onChange={handleChange}
             required
           />
@@ -74,7 +74,7 @@ export default function AddPostForm({ obj }) {
             type="text"
             placeholder="Enter Post Title"
             name="Title"
-            value={formData.Title}
+            value={formData.title}
             onChange={handleChange}
             required
           />
@@ -85,7 +85,7 @@ export default function AddPostForm({ obj }) {
             type="text"
             placeholder="Enter the content"
             name="Content"
-            value={formData.Content}
+            value={formData.content}
             onChange={handleChange}
             required
           />
@@ -97,16 +97,16 @@ export default function AddPostForm({ obj }) {
             name="CategoryId"
             onChange={handleChange}
             className="mb-3"
-            value={obj.CategoryId}
+            value={obj.categoryId}
           >
             <option value="">Select a Category</option>
             {
-            category.map((Categories) => (
+            category.map((categories) => (
               <option
-                key={Categories.id}
-                value={Categories.id}
+                key={categories.id}
+                value={categories.id}
               >
-                {Categories.label}
+                {categories.label}
               </option>
             ))
           }
@@ -123,12 +123,12 @@ export default function AddPostForm({ obj }) {
 AddPostForm.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
-    Title: PropTypes.string,
-    CategoryId: PropTypes.number,
-    ImageUrl: PropTypes.string,
-    Content: PropTypes.string,
-    IsApproved: PropTypes.bool,
-    RareUserId: PropTypes.number,
+    title: PropTypes.string,
+    categoryId: PropTypes.number,
+    imageUrl: PropTypes.string,
+    content: PropTypes.string,
+    isApproved: PropTypes.bool,
+    rareUserId: PropTypes.number,
   }),
 };
 AddPostForm.defaultProps = {
