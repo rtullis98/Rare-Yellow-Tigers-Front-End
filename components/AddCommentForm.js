@@ -36,7 +36,7 @@ function AddCommentForm({ postId }) {
   };
 
   return (
-    <div style={{ border: '1px solid black', borderRadius: '10px', padding: '20px' }}>
+    <div style={{ border: '2px solid #ccc', borderRadius: '10px', padding: '20px' }}>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="content">
           <Form.Control
