@@ -25,23 +25,25 @@ const PostGrid = ({ posts, isAuthenticated, onUpdate }) => {
               <p className="card-text">Tag: {post.tags}</p>
               <p className="card-text">Created on: {post.publicationDate}</p>
 
-              <Link passHref href={`/post/${post.id}`}>
-                <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
-                  View
-                </Button>
-              </Link>
-              <Link passHref href={`/edit/${post.id}`}>
-                <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
-                  Edit
-                </Button>
-              </Link>
-              {isAuthenticated && (
-                // <Link passHref href={`/post/${post.id}`}>
-                <Button variant="secondary" className="mt-3 btn-sm ms-3" style={{ height: '32px' }} onClick={() => deleteMyPost(post.id)}>
-                  Delete
-                </Button>
-                // </Link>
-              ) }
+              <div className="d-flex justify-content-between">
+                <Link passHref href={`/post/${post.id}`}>
+                  <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
+                    View
+                  </Button>
+                </Link>
+                {isAuthenticated && (
+                  <Link passHref href={`/post/postTag/${post.id}`}>
+                    <Button variant="success" className="mt-3 btn-sm" style={{ height: '32px' }}>
+                      Add Tag
+                    </Button>
+                  </Link>
+                )}
+                {isAuthenticated && (
+                  <Button variant="secondary" className="mt-3 btn-sm" style={{ height: '32px' }} onClick={() => deleteMyPost(post.id)}>
+                    Delete
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>

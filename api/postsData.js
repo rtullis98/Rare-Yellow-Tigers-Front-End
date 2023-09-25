@@ -48,7 +48,7 @@ const deletePost = (id) => new Promise((resolve, reject) => {
     },
   })
     .then(async (res) => {
-      if (res.NotFound) {
+      if (res.ok) {
         resolve();
       }
     })
@@ -132,7 +132,7 @@ const singlePostByUser = (id) => new Promise((resolve, reject) => {
 });
 
 const addTagToPost = (postId, tagId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/post/tagpost`, {
+  fetch(`${dbUrl}/api/post/tagpost/${postId}/${tagId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

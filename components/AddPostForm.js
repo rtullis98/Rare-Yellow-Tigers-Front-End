@@ -8,10 +8,10 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  title: '',
-  imageUrl: '',
-  content: '',
-  isApproved: false,
+  Title: '',
+  ImageUrl: '',
+  Content: '',
+  IsApproved: false,
 };
 export default function AddPostForm({ obj }) {
   const [formData, setFormData] = useState(initialState);
