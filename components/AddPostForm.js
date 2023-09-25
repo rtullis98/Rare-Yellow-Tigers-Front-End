@@ -110,7 +110,7 @@ export default function AddPostForm({ obj }) {
         </Form.Group>
 
         {/* SUBMIT BUTTON  */}
-        <Button type="submit">Create Post</Button>
+        <Button type="submit" className="btn-secondary mt-2">Create Post</Button>
       </Form>
     </>
   );
