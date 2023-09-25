@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { getAllCategories } from '../api/categoryData';
 import ListComponent from '../components/ListComponent';
 import NewLableForm from '../components/NewLabelForm';
@@ -18,6 +19,9 @@ export default function CategoryManagerPage() {
 
   return (
     <div>
+      <Head>
+        <title>Category Manager</title>
+      </Head>
       <h1 className="py-3">Categories</h1>
 
       <div className="d-flex gap-5 pt-3">
