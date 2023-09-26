@@ -8,11 +8,11 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  Id: 0,
-  Title: '',
-  ImageUrl: '',
-  Content: '',
-  IsApproved: false,
+  // Id: 0,
+  title: '',
+  imageUrl: '',
+  content: '',
+  isApproved: false,
 };
 
 export default function AddPostForm({ obj }) {
@@ -22,10 +22,15 @@ export default function AddPostForm({ obj }) {
   const { user } = useAuth();
   const router = useRouter();
 
+  console.warn('OBJ: ', obj);
+
   useEffect(() => {
     getAllCategories().then(setCategory);
     checkUser(user.id).then(setRareUser);
-  }, [user]);
+    if (obj.id) {
+      setFormData(obj);
+    }
+  }, [user, obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +42,9 @@ export default function AddPostForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.Id) {
-      updatePost(formData)
+    if (obj.id) {
+      const payload = { ...formData, Id: obj.id };
+      updatePost(payload)
         .then(() => router.push('/'));
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
@@ -59,7 +65,7 @@ export default function AddPostForm({ obj }) {
           <Form.Control
             type="text"
             placeholder="Enter an image url"
-            name="ImageUrl"
+            name="imageUrl"
             value={formData.imageUrl}
             onChange={handleChange}
             required
@@ -70,7 +76,7 @@ export default function AddPostForm({ obj }) {
           <Form.Control
             type="text"
             placeholder="Enter Post Title"
-            name="Title"
+            name="title"
             value={formData.title}
             onChange={handleChange}
             required
@@ -81,7 +87,7 @@ export default function AddPostForm({ obj }) {
           <Form.Control
             type="text"
             placeholder="Enter the content"
-            name="Content"
+            name="content"
             value={formData.content}
             onChange={handleChange}
             required
@@ -91,10 +97,10 @@ export default function AddPostForm({ obj }) {
         <Form.Group className="mb-3" controlId="formGridLevel">
           <Form.Select
             aria-label="Category"
-            name="CategoryId"
+            name="categoryId"
             onChange={handleChange}
             className="mb-3"
-            value={obj.categoryId}
+            value={formData.categoryId}
           >
             <option value="">Select a Category</option>
             {

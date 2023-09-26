@@ -8,10 +8,10 @@ export default function EditPost() {
   const router = useRouter();
   const { id } = router.query;
 
-  console.warn('EDITITEM: ', editItem);
+  console.warn('ID: ', id);
   useEffect(() => {
-    singlePostByUser(id).then((data) => setEditItem(data[0]));
-  }, [id]);
+    singlePostByUser(id).then((data) => setEditItem(data));
+  }, []);
 
   return (<AddPostForm obj={editItem} />);
 }
