@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import AddPostForm from '../../components/AddPostForm';
@@ -8,7 +9,6 @@ export default function EditPost() {
   const router = useRouter();
   const { id } = router.query;
 
-  console.warn('ID: ', id);
   useEffect(() => {
     singlePostByUser(id).then((data) => setEditItem(data));
   }, []);
