@@ -31,6 +31,11 @@ const PostGrid = ({ posts, isAuthenticated, onUpdate }) => {
                     View
                   </Button>
                 </Link>
+                <Link passHref href={`/edit/${post.id}`}>
+                  <Button variant="primary" className="mt-3 btn-sm" style={{ height: '32px' }}>
+                    Edit
+                  </Button>
+                </Link>
                 {isAuthenticated && (
                   <Link passHref href={`/post/postTag/${post.id}`}>
                     <Button variant="success" className="mt-3 btn-sm" style={{ height: '32px' }}>
