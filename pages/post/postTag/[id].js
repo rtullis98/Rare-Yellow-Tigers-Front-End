@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getSinglePost } from '../../../api/postsData';
+import { singlePostByUser } from '../../../api/postsData';
 import AddTagToPost from '../../../components/AddTagToPost';
 
 export default function SinglePostPage() {
@@ -10,7 +10,7 @@ export default function SinglePostPage() {
 
   useEffect(() => {
     if (id) {
-      getSinglePost(id).then((data) => {
+      singlePostByUser(id).then((data) => {
         setPost(data);
       });
     }
