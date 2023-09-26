@@ -43,7 +43,7 @@ export default function AddPostForm({ obj }) {
     if (obj.id) {
       const payload = { ...formData, Id: obj.id };
       updatePost(payload)
-        .then(() => router.push('/'));
+        .then(() => router.push('/myPostsPage'));
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
       createPost(payload)
@@ -115,7 +115,8 @@ export default function AddPostForm({ obj }) {
         </Form.Group>
 
         {/* SUBMIT BUTTON  */}
-        <Button type="submit" className="btn-secondary mt-2">Create Post</Button>
+
+        <Button type="submit" className="btn-secondary mt-2">{obj.id ? 'Update' : 'Create'} Post</Button>
       </Form>
     </>
   );
