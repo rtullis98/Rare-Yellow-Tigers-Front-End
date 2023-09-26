@@ -34,7 +34,7 @@ function NewLableForm({ onUpdate, type }) {
 
   return (
     <>
-      <div style={{ border: '1px solid black', borderRadius: '10px', padding: '20px' }}>
+      <div style={{ border: '2px solid #ccc', borderRadius: '10px', padding: '20px' }}>
         {/* <h4>Create a new { type === 'tag' ? <span>Tag</span> : <span>Category</span>}</h4> */}
         <h4>Create a new {type}</h4>
         <Form onSubmit={handleSubmit}>

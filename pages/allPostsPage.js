@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
+import Head from 'next/head';
 import { getAllPosts } from '../api/postsData';
 import PostGrid from '../components/PostGrid';
 
@@ -13,6 +14,9 @@ export default function AllPostsPage() {
 
   return (
     <div>
+      <Head>
+        <title>All Posts</title>
+      </Head>
       <div className="d-flex justify-content-between">
         <h1 className="py-3">All Posts</h1>
         <Link passHref href="/createPostPage">

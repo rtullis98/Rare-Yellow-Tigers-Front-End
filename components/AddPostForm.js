@@ -8,10 +8,11 @@ import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 const initialState = {
-  Title: '',
-  ImageUrl: '',
-  Content: '',
-  IsApproved: false,
+  // Id: 0,
+  title: '',
+  imageUrl: '',
+  content: '',
+  isApproved: false,
 };
 
 export default function AddPostForm({ obj }) {
@@ -24,7 +25,10 @@ export default function AddPostForm({ obj }) {
   useEffect(() => {
     getAllCategories().then(setCategory);
     checkUser(user.id).then(setRareUser);
-  }, [user]);
+    if (obj.id) {
+      setFormData(obj);
+    }
+  }, [user, obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,9 +40,10 @@ export default function AddPostForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.Id) {
-      updatePost(formData)
-        .then(() => router.push('/'));
+    if (obj.id) {
+      const payload = { ...formData, Id: obj.id };
+      updatePost(payload)
+        .then(() => router.push('/myPostsPage'));
     } else {
       const payload = { ...formData, PublicationDate: new Date(Date.now()), RareUserId: user.id };
       createPost(payload)
@@ -58,8 +63,8 @@ export default function AddPostForm({ obj }) {
           <Form.Control
             type="text"
             placeholder="Enter an image url"
-            name="ImageUrl"
-            value={formData.ImageUrl}
+            name="imageUrl"
+            value={formData.imageUrl}
             onChange={handleChange}
             required
           />
@@ -69,8 +74,8 @@ export default function AddPostForm({ obj }) {
           <Form.Control
             type="text"
             placeholder="Enter Post Title"
-            name="Title"
-            value={formData.Title}
+            name="title"
+            value={formData.title}
             onChange={handleChange}
             required
           />
@@ -80,8 +85,8 @@ export default function AddPostForm({ obj }) {
           <Form.Control
             type="text"
             placeholder="Enter the content"
-            name="Content"
-            value={formData.Content}
+            name="content"
+            value={formData.content}
             onChange={handleChange}
             required
           />
@@ -90,19 +95,19 @@ export default function AddPostForm({ obj }) {
         <Form.Group className="mb-3" controlId="formGridLevel">
           <Form.Select
             aria-label="Category"
-            name="CategoryId"
+            name="categoryId"
             onChange={handleChange}
             className="mb-3"
-            value={obj.CategoryId}
+            value={formData.categoryId}
           >
             <option value="">Select a Category</option>
             {
-            category.map((Categories) => (
+            category.map((categories) => (
               <option
-                key={Categories.id}
-                value={Categories.id}
+                key={categories.id}
+                value={categories.id}
               >
-                {Categories.label}
+                {categories.label}
               </option>
             ))
           }
@@ -110,7 +115,8 @@ export default function AddPostForm({ obj }) {
         </Form.Group>
 
         {/* SUBMIT BUTTON  */}
-        <Button type="submit">Create Post</Button>
+
+        <Button type="submit" className="btn-secondary mt-2">{obj.id ? 'Update' : 'Create'} Post</Button>
       </Form>
     </>
   );
@@ -118,13 +124,13 @@ export default function AddPostForm({ obj }) {
 
 AddPostForm.propTypes = {
   obj: PropTypes.shape({
-    Id: PropTypes.number,
-    Title: PropTypes.string,
-    CategoryId: PropTypes.number,
-    ImageUrl: PropTypes.string,
-    Content: PropTypes.string,
-    IsApproved: PropTypes.bool,
-    RareUserId: PropTypes.number,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    categoryId: PropTypes.number,
+    imageUrl: PropTypes.string,
+    content: PropTypes.string,
+    isApproved: PropTypes.bool,
+    rareUserId: PropTypes.number,
   }),
 };
 AddPostForm.defaultProps = {

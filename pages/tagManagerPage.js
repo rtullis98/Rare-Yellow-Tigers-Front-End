@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { getAllTags } from '../api/tagsData';
 import ListComponent from '../components/ListComponent';
 import NewLableForm from '../components/NewLabelForm';
@@ -18,6 +19,9 @@ export default function TagManagerPage() {
 
   return (
     <div>
+      <Head>
+        <title>Tag Manager</title>
+      </Head>
       <h1 className="py-3">Tags</h1>
       <div className="d-flex gap-5 pt-3">
         <div className="w-50">

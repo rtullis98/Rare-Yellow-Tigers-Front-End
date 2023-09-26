@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
 import RegisterForm from '../components/RegisterForm';
@@ -16,6 +17,9 @@ function Home() {
 
   return (
     <>
+      <Head>
+        <title>Home</title>
+      </Head>
       { authUser?.uid === user.uid ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
