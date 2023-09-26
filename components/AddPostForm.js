@@ -22,8 +22,6 @@ export default function AddPostForm({ obj }) {
   const { user } = useAuth();
   const router = useRouter();
 
-  console.warn('OBJ: ', obj);
-
   useEffect(() => {
     getAllCategories().then(setCategory);
     checkUser(user.id).then(setRareUser);

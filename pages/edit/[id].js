@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import AddPostForm from '../../components/AddPostForm';
-import { singlePostByUser } from '../../api/postsData';
+import { getSinglePost } from '../../api/postsData';
 
 export default function EditPost() {
   const [editItem, setEditItem] = useState({});
@@ -10,7 +10,7 @@ export default function EditPost() {
   const { id } = router.query;
 
   useEffect(() => {
-    singlePostByUser(id).then((data) => setEditItem(data));
+    getSinglePost(id).then((data) => setEditItem(data));
   }, []);
 
   return (<AddPostForm obj={editItem} />);

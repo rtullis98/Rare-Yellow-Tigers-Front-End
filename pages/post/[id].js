@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getSinglePost } from '../../api/postsData';
+import { singlePostByUser } from '../../api/postsData';
 import ViewPost from '../../components/ViewPost';
 import AddCommentForm from '../../components/AddCommentForm';
 import { getCommentsByPostId } from '../../api/commentData';
@@ -18,7 +18,7 @@ export default function SinglePostPage() {
   };
   useEffect(() => {
     if (id) {
-      getSinglePost(id).then((data) => {
+      singlePostByUser(id).then((data) => {
         setPost(data);
       });
     }
